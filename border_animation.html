@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moving Color Border</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #080b14;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    position: relative;
+    width: 300px;
+    padding: 3px;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -150%;
+    background: conic-gradient(#ff0055, #ffcc00, #00ff99, #00ccff, #7b2cff, #ff0055
+    );
+    animation: rotate 3s linear infinite;
+}
+
+.content {
+    position: relative;
+    background: #101522;
+    border-radius: 15px;
+    padding: 40px 25px;
+    text-align: center;
+    color: white;
+}
+
+h2 {
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+p {
+    color: #aab4cc;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+button {
+    margin-top: 22px;
+    padding: 11px 24px;
+    border: none;
+    border-radius: 6px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="content">
+        <h2>Moving Border ✨</h2>
+        <p>This colorful border never stops moving!</p>
+        <button>Explore More</button>
+    </div>
+</div>
+
+</body>
+</html>
