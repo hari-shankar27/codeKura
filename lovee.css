@@ -1,0 +1,264 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    font-family: inherit;
+    color: white;
+    background:
+        radial-gradient(circle at 20% 20%, #5b102e, transparent 35%),
+        radial-gradient(circle at 80% 80%, #3d0b42, transparent 35%),
+        #09020a;
+}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    background:
+        conic-gradient(
+            from 0deg,
+            transparent,
+            #ff176f22,
+            transparent,
+            #9b27ff22,
+            transparent
+        );
+    animation: rotateBg 12s linear infinite;
+}
+
+@keyframes rotateBg {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.star {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px white;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: .2;
+        transform: scale(.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+.card {
+    position: relative;
+    z-index: 10;
+    width: min(90%, 430px);
+    padding: 45px 25px;
+    text-align: center;
+
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 30px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 0 50px #ff176f22,
+        inset 0 0 30px #ffffff08;
+
+    animation: cardIn 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: scale(.5) translateY(80px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.big-heart {
+    font-size: 80px;
+    display: inline-block;
+
+    filter:
+        drop-shadow(0 0 15px #ff176f)
+        drop-shadow(0 0 35px #ff176f);
+
+    animation: heartbeat 1.1s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.25);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.18);
+    }
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 32px;
+}
+
+.typing {
+    margin: 15px auto;
+    min-height: 50px;
+    color: #ffc4d8;
+    font-size: 17px;
+}
+
+.buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+button {
+    border: 0;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.yes {
+    color: white;
+    background: linear-gradient(135deg, #ff176f, #ff4d9a);
+    box-shadow: 0 0 25px #ff176f66;
+}
+
+.yes:hover {
+    transform: scale(1.12);
+    box-shadow: 0 0 40px #ff176f;
+}
+
+.no {
+    color: white;
+    background: #ffffff12;
+}
+
+.final {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    text-align: center;
+
+    background:
+        radial-gradient(circle, #7c1745, #09020a 70%);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.2);
+
+    transition: 1s;
+}
+
+.final.show {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.final-content {
+    padding: 30px;
+}
+
+.final-heart {
+    font-size: 110px;
+    animation: heartbeat .8s infinite;
+    filter: drop-shadow(0 0 35px #ff176f);
+}
+
+.final h2 {
+    margin-top: 20px;
+    font-size: clamp(30px, 8vw, 55px);
+}
+
+.final p {
+    margin-top: 15px;
+    color: #ffc4d8;
+    font-size: 19px;
+}
+
+.float-heart {
+    position: fixed;
+    bottom: -50px;
+    z-index: 5;
+    pointer-events: none;
+
+    animation:
+        floatUp linear forwards,
+        sway 2s ease-in-out infinite alternate;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes sway {
+    from {
+        margin-left: -20px;
+    }
+
+    to {
+        margin-left: 20px;
+    }
+}
+
+.particle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff4d9a;
+    pointer-events: none;
+    z-index: 200;
+
+    animation: explode .9s ease-out forwards;
+}
+
+@keyframes explode {
+    to {
+        transform:
+            translate(var(--x), var(--y))
+            scale(0);
+        opacity: 0;
+    }
+}

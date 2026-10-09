@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Surprise For You ❤️</title>
+<link rel="stylesheet" href="lovee.css">
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="big-heart">❤️</div>
+
+    <h1>Wait... I Have Something For You 👀</h1>
+
+    <div class="typing" id="typing"></div>
+
+    <div class="buttons">
+        <button class="yes" onclick="yesClicked()">
+            YES ❤️
+        </button>
+
+        <button class="no" id="noBtn" onclick="noClicked()">
+            NO 😭
+        </button>
+    </div>
+
+</div>
+
+<div class="final" id="final">
+
+    <div class="final-content">
+
+        <div class="final-heart">❤️</div>
+
+        <h2>You're My Favorite Person 🥹</h2>
+
+        <p>
+               Out of everyone in this world...
+            <br>
+                        I'm glad I found you.🥹❤️
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+const text =
+"I made something special just for you... 💕";
+
+let index = 0;
+
+function typeText() {
+
+    if (index < text.length) {
+
+        document.getElementById("typing")
+            .textContent += text[index];
+
+        index++;
+
+        setTimeout(typeText, 55);
+    }
+}
+
+typeText();
+
+
+for (let i = 0; i < 70; i++) {
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 2 + "s";
+
+    document.body.appendChild(star);
+}
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "float-heart";
+
+    const hearts = ["❤️", "💖", "💕", "💗", "💓", "✨"];
+
+    heart.textContent =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
+    heart.style.fontSize =
+        15 + Math.random() * 30 + "px";
+
+    heart.style.animationDuration =
+        5 + Math.random() * 5 + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 10000);
+}
+
+setInterval(createHeart, 350);
+
+function yesClicked() {
+
+    createExplosion(
+        window.innerWidth / 2,
+        window.innerHeight / 2
+    );
+
+    setTimeout(() => {
+
+        document
+            .getElementById("final")
+            .classList.add("show");
+
+    }, 700);
+}
+function noClicked() {
+
+    const button =
+        document.getElementById("noBtn");
+
+    const x =
+        Math.random() * 200 - 100;
+
+    const y =
+        Math.random() * 150 - 75;
+
+    button.style.transform =
+        `translate(${x}px, ${y}px)`;
+
+}
+
+
+function createExplosion(x, y) {
+
+    for (let i = 0; i < 80; i++) {
+
+        const particle =
+            document.createElement("div");
+
+        particle.className = "particle";
+
+        particle.style.left = x + "px";
+        particle.style.top = y + "px";
+
+        const angle =
+            Math.random() * Math.PI * 2;
+
+        const distance =
+            100 + Math.random() * 300;
+
+        particle.style.setProperty(
+            "--x",
+            Math.cos(angle) * distance + "px"
+        );
+
+        particle.style.setProperty(
+            "--y",
+            Math.sin(angle) * distance + "px"
+        );
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, 900);
+    }
+}
+
+</script>
+
+</body>
+</html>
